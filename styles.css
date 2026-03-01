@@ -1,0 +1,12 @@
+body {
+    font-family: Arial;
+}
+
+header {
+    background-color: lightgray;
+}
+
+nav ul {
+    display: flex;
+    gap: 15px;
+}
