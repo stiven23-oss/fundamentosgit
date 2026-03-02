@@ -14,18 +14,200 @@
     <header>
         <nav>
             <ul>
-                <li>Inicio</li>
-                <li>Servicios</li>
-                <li>Contacto</li>
+                <li><a href="#inicio">Introducción</a></li>
+                <li><a href="#conceptos">Conceptos clave</a></li>
+                <li><a href="#comandos">Comandos principales</a></li>
+                <li><a href="#flujo">Flujos de trabajo</a></li>
+                <li><a href="#recursos">Recursos</a></li>
             </ul>
         </nav>
     </header>
 
+ <main class="container">
     <!-- Contenido principal -->
-    <main>
-        <h1>Bienvenido a mi sitio</h1>
-        <p>Contenido principal</p>
-    </main>
+    
+    <h1>Bienvenido a mi sitio</h1>
+    <p>Contenido principal</p>  
+     
+
+    <h1 class="texto-azul">Guía esencial de Git</h1>
+    <p class="meta">
+        Esta página está construida con <strong>HTML5 semántico</strong> y estilos <strong>CSS</strong> propios (sin JavaScript),
+        con el objetivo de practicar estructura, accesibilidad y semántica. El contenido se centra <strong>exclusivamente en Git</strong>.
+    </p>
+      
+
+
+
+
+
+    <!-- SECTION: INICIO -->
+    <section id="inicio" aria-labelledby="h2-inicio">
+      <h2 id="h2-inicio" class="texto-azul">Introducción</h2>
+      <p>
+        <strong>Git</strong> es un sistema de control de versiones distribuido que permite mantener
+        un historial completo de cambios, trabajar en paralelo con ramas y colaborar de forma segura.
+        Esta guía resume sus comandos principales, con ejemplos concisos.
+      </p>
+      <blockquote id="especial">
+        “El buen diseño es obvio. El gran diseño es transparente.” – Joe Sparano
+      </blockquote>
+      <p class="notes">
+        Esta página usa <span class="badge">HTML5</span> (secciones, artículos, figuras, navegación) y
+        <span class="badge">CSS</span> (grid de tarjetas, estilos tipográficos y componentes como <span class="kbd">.badge</span> y <span class="kbd">.grid-cards</span>).
+      </p>
+    </section>
+
+    <!--  SECTION: CONCEPTOS CLAVE  -->
+    <section id="conceptos" aria-labelledby="h2-conceptos">
+      <h2 id="h2-conceptos">Conceptos clave de Git</h2>
+      <div class="grid-cards">
+        <article class="card" id="git-snapshot" aria-labelledby="h3-snapshot">
+          <h3 id="h3-snapshot">&lt;Snapshots&gt; y no diffs</h3>
+          <p>
+            Git guarda <em>instantáneas</em> (snapshots) del estado del proyecto en cada commit, lo cual
+            hace las operaciones muy rápidas y confiables.
+          </p>
+          <figure>
+            <img src="resources/img/git-snapshot.png" alt="Diagrama conceptual de snapshots en Git">
+            <figcaption>Commits como snapshots enlazados.</figcaption>
+          </figure>
+          <p class="notes">Cada commit apunta a su(s) padre(s), formando un grafo acíclico.</p>
+        </article>
+
+        <article class="card" id="git-areas" aria-labelledby="h3-areas">
+          <h3 id="h3-areas">&lt;Áreas&gt; de trabajo</h3>
+          <p>
+            Git opera en tres áreas: <strong>Working Directory</strong> (archivos editándose), <strong>Staging Area</strong> (índice de lo que se va a confirmar) y <strong>Repository</strong> (historial persistente).
+          </p>
+          <figure>
+            <img src="resources/img/git-areas.png" alt="Working directory, Staging y Repository">
+            <figcaption>Flujo entre trabajo, staging y repositorio.</figcaption>
+          </figure>
+          <ul class="cmd-list">
+            <li><code>git add</code> &rarr; mueve cambios al <em>staging</em>.</li>
+            <li><code>git commit</code> &rarr; guarda un snapshot en el repositorio.</li>
+            <li><code>git restore</code>/<code>git reset</code> &rarr; revierten o deshacen.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!--SECTION: COMANDOS PRINCIPALES -->
+    <section id="comandos" aria-labelledby="h2-comandos">
+      <h2 id="h2-comandos">Comandos principales de Git</h2>
+
+      <div class="grid-cards2">
+        <!-- INIT -->
+        <article class="card" id="git-init" aria-labelledby="h3-init">
+          <h3 id="h3-init"><span>Básico</span> git init</h3>
+          <figure>
+            <img src="resources/img/git-init.png" alt="Representación de iniciar un repositorio Git">
+            <figcaption>Inicializa un nuevo repositorio en la carpeta actual.</figcaption>
+          </figure>
+          <p>
+            Crea el directorio oculto <code>.git</code> y empieza a rastrear versiones.
+          </p>
+          <pre><code>$ git init
+            Initialized empty Git repository in .git/</code></pre>
+          <p class="notes">Usa <code>git init -b main</code> para fijar la rama inicial como <em>main</em>.</p>
+        </article>
+
+        <!-- CLONE -->
+        <article class="card" id="git-clone" aria-labelledby="h3-clone">
+          <h3 id="h3-clone"><span class="badge verde">Básico</span> git clone</h3>
+          <figure>
+            <img src="resources/img/git-clone.png" alt="Clonación de un repositorio remoto">
+            <figcaption>Descarga una copia local de un repositorio existente.</figcaption>
+          </figure>
+          <p>Clona historial, ramas y configuración del remoto.</p>
+          <pre><code>$ git clone https://servidor.com/usuario/proyecto.git
+$ cd proyecto</code></pre>
+          <p class="notes">Puedes clonar con <code>--depth 1</code> para historial superficial.</p>
+        </article>
+
+       
+        <!-- ADD -->
+        <article class="card" id="git-add" aria-labelledby="h3-add">
+          <h3 id="h3-add"><span class="badge verde">Básico</span> git add</h3>
+          <figure>
+            <img src="resources/img/git-add.png" alt="Añadiendo cambios al staging">
+            <figcaption>Prepara cambios para el commit (staging).</figcaption>
+          </figure>
+          <pre><code>$ git add archivo.html
+$ git add .            # añade todo
+$ git add -p           # por fragmentos (hunks)</code></pre>
+          <p class="notes">Con <code>-p</code> puedes seleccionar partes específicas.</p>
+        </article>
+
+        <!-- COMMIT -->
+        <article class="card" id="git-commit" aria-labelledby="h3-commit">
+          <h3 id="h3-commit"><span class="badge verde">Básico</span> git commit</h3>
+          <figure>
+            <img src="resources/img/git-commit.png" alt="Creando un commit en Git">
+            <figcaption>Crea un snapshot con mensaje descriptivo.</figcaption>
+          </figure>
+          <pre><code>$ git commit -m "feat: agrega sección de comandos básicos"
+$ git commit --amend  # reescribe el último commit</code></pre>
+          <p class="notes">Mensajes claros ayudan a entender el historial.</p>
+        </article>
+
+       
+        <!-- FETCH / PULL / PUSH -->
+        <article class="card" id="git-sync" aria-labelledby="h3-sync">
+          <h3 id="h3-sync"><span class="badge">Sincronización</span> fetch, pull, push</h3>
+          <figure>
+            <img src="resources/img/git-sync.png" alt="Sincronización con remotos en Git">
+            <figcaption>Traer, integrar y publicar cambios.</figcaption>
+          </figure>
+          <pre><code>$ git fetch origin            # trae refs sin integrar
+$ git pull --ff-only          # integra si posible fast-forward
+$ git push origin main        # publica tu rama</code></pre>
+          <p class="notes"><code>pull</code> = <code>fetch</code> + <code>merge</code> (por defecto) o <code>rebase</code> con <code>--rebase</code>.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- SECTION: FLUJOS -->
+    <section id="flujo" aria-labelledby="h2-flujo">
+      <h2 id="h2-flujo">Flujos de trabajo comunes</h2>
+      <article class="card" id="flujo-feature" aria-labelledby="h3-feature">
+        <h3 id="h3-feature">Feature branch (sencillo)</h3>
+        <figure>
+          <img src="resources/img/git-flow-simple.png" alt="Diagrama simple de flujo de ramas">
+          <figcaption>Rama por funcionalidad, merge a main.</figcaption>
+        </figure>
+        <pre><code># crear rama y trabajar
+git switch -c feature/login
+# commits...
+git push -u origin feature/login
+# integrar
+git switch main
+git pull --ff-only
+git merge feature/login
+git push origin main</code></pre>
+      </article>
+    </section>
+
+    <!-- SECTION: RECURSOS -->
+    <section id="recursos" aria-labelledby="h2-recursos">
+      <h2 id="h2-recursos">Recursos recomendados para Git</h2>
+      <ul class="cmd-list">
+        <li><strong>Ayuda integrada:</strong> <code>git help &lt;comando&gt;</code>, <code>git &lt;comando&gt; -h</code></li>
+        <li><strong>Convenciones de mensajes:</strong> estilo <em>Conventional Commits</em> para claridad (<code>feat:</code>, <code>fix:</code>, etc.).</li>
+        <li><strong>Alias útiles (opcional):</strong> en <code>~/.gitconfig</code>:
+          <pre><code>[alias]
+  lg = log --oneline --graph --decorate --all
+  co = checkout
+  st = status -sb
+  ci = commit
+  br = branch</code></pre>
+        </li>
+      </ul>
+    </section>
+
+  
+
 
     <!-- Formulario de contacto -->
     <section>
@@ -43,10 +225,13 @@
         </form>
     </section>
 
-    <!-- Contenido extra -->
-    <div>
-        <p>Ejemplo de git</p>
-    </div>
+   
+    </main>
+
+  <footer>
+    <p>© 2026 - Taller Git: Hecho con <strong>HTML5</strong> + <strong>CSS</strong>.</p>
+  </footer>
+
 
 </body>
 </html>
